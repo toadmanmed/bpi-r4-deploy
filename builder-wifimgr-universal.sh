@@ -73,8 +73,13 @@ mkdir -p files/etc/uci-defaults
 \cp -r ../my_files/99-set-hostname files/etc/uci-defaults/
 chmod +x files/etc/uci-defaults/99-set-hostname
 
-\cp -r ../my_files/97-set-region.sh files/etc/uci-defaults/97-set-region.sh
-chmod +x files/etc/uci-defaults/97-set-region.sh
+# Injeta o patch com a tabela customizada 99 no wireless-regdb
+mkdir -p package/firmware/wireless-regdb/patches
+\cp -r ../my_files/999-custom-regdb.patch package/firmware/wireless-regdb/patches/
+
+# Injeta o script de região no uci-defaults para rodar no primeiro boot
+\cp -r ../my_files/99-set-region.sh files/etc/uci-defaults/
+chmod +x files/etc/uci-defaults/99-set-region.sh
 
 mkdir -p files/etc/config
 \cp -r ../my_files/mlo-steerd.config files/etc/config/mlo-steerd
